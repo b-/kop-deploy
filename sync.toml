@@ -1,0 +1,21 @@
+[[resource_sync]]
+name = "kop-deploy-sync"
+tags = ["kop", "sync"]
+[resource_sync.config]
+repo = "b-/kop-deploy"
+git_account = "b-"
+resource_path = ["sync.toml"]
+managed = true
+delete = true
+match_tags = ["kop", "sync"]
+
+[[resource_sync]]
+name = "kop-deployments"
+tags = ["kop", "deployment"]
+[resource_sync.config]
+repo = "b-/kop-deploy"
+git_account = "b-"
+resource_path = ["instances.toml"]
+managed = true
+delete = true
+match_tags = ["kop", "instance"]

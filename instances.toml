@@ -1,0 +1,13 @@
+[[stack]]
+name = "mediaboxlite-kop"
+tags = ["kop", "instance"]
+[stack.config]
+server = "mediaboxlite"
+git_account = "b-"
+repo = "b-/kop-deploy"
+reclone = true
+file_paths = ["compose.yaml"]
+environment = """
+HOSTNAME=mediaboxlite
+BIND_IP=100.97.198.120
+"""
