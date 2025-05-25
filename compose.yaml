@@ -47,6 +47,7 @@ services:
       <<: *ts-env
       TS_HOSTNAME: "${HOSTNAME:-generic}-internal"
   traefik-kop-internal:
+    network_mode: service:traefik-ts
     image: "ghcr.io/jittering/traefik-kop:latest"
     restart: unless-stopped
     environment:
@@ -56,9 +57,9 @@ services:
       - "BIND_IP=${BIND_IP}"
     depends_on:
       - socket-proxy
-    networks:
-      - default
-      #- kop_net
+    #networks:
+    #  - default
+    #- kop_net
   socket-proxy:
     image: lscr.io/linuxserver/socket-proxy:latest
     networks:

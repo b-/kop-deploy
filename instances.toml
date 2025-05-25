@@ -10,6 +10,7 @@ file_paths = ["compose.yaml"]
 environment = """
 HOSTNAME=mediaboxlite
 BIND_IP=100.97.198.120
+TS_AUTHKEY=[[OP__KOMODO__TAILSCALE_OP__CLIENT_SECRET]]?ephemeral=true
 """
 [[stack]]
 name = "auth-kop"
@@ -23,4 +24,5 @@ file_paths = ["compose.yaml"]
 environment = """
 HOSTNAME=auth
 BIND_IP=100.118.113.29
+TS_AUTHKEY=[[OP__KOMODO__TAILSCALE_OP__CLIENT_SECRET]]?ephemeral=true
 """
