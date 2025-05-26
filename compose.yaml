@@ -41,12 +41,12 @@ services:
   #   networks:
   #     - default
   #     - kop_net
-  traefik-ts:
+  kop-ts:
     <<: *ts-sidecar
     environment:
       <<: *ts-env
       TS_HOSTNAME: "${HOSTNAME:-generic}-internal"
-  traefik-kop-internal:
+  kop-internal:
     network_mode: service:traefik-ts
     image: "ghcr.io/jittering/traefik-kop:latest"
     restart: unless-stopped
