@@ -1,28 +1,17 @@
-[[stack]]
-name = "mediaboxlite-kop"
-tags = ["kop", "instance"]
-[stack.config]
-server = "mediaboxlite"
-git_account = "b-"
-repo = "b-/kop-deploy"
-reclone = true
-file_paths = ["compose.yaml"]
-environment = """
-HOSTNAME=mediaboxlite
-BIND_IP=100.97.198.120
-TS_AUTHKEY=[[OP__KOMODO__TAILSCALE_OP__CLIENT_SECRET]]?ephemeral=true
-"""
-[[stack]]
-name = "auth-kop"
-tags = ["kop", "instance"]
-[stack.config]
-server = "auth"
-git_account = "b-"
-repo = "b-/kop-deploy"
-reclone = true
-file_paths = ["compose.yaml"]
-environment = """
-HOSTNAME=auth
-BIND_IP=100.118.113.29
-TS_AUTHKEY=[[OP__KOMODO__TAILSCALE_OP__CLIENT_SECRET]]?ephemeral=true
-"""
+[[procedure]]
+name = "deploy_dns-a2cname"
+tags = ["dns-a2cname", "instance"]
+
+[[procedure.config.stage]]
+name = "Sync 🔄"
+enabled = true
+executions = [
+  { execution.type = "RunSync", execution.params.sync = "dns-a2cname_syncs", enabled = true }
+]
+
+[[procedure.config.stage]]
+name = "Deploy 🚀"
+enabled = true
+executions = [
+  { execution.type = "BatchDeployStackIfChanged", execution.params.pattern = "dns-a2cname_*", enabled = true }
+]
